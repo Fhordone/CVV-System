@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CCVLab</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/Menu.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CCVLab.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://kit.fontawesome.com/019078dbc4.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar-principal">
+            <div class="franja-azul">
+                <div class="menu-desplegable">
+                    <label for="btn-menu-desplegable" class="fa-solid fa-bars"></label>
+                </div>
+                <div class="logo">
+                    <img src="~/image/logo.png" alt="Logo" />
+                </div>
+                <a class="profile-button" href="#">
+                    Profile 
+                    <label class="icon-profile">
+                        <FontAwesomeIcon icon={faCircleUser} />
+                    </label>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <input type="checkbox" id="btn-menu-desplegable">
+    <div class="container-menu-desplegable">
+        <div class="contenido-menu-desplegable">
+            <nav>
+                <a asp-area="" asp-controller="Login" asp-action="Login">Login</a>
+                <a asp-area="" asp-controller="Prueba" asp-action="Prueba">Pruebas</a>
+                <a asp-area="" asp-controller="Paciente" asp-action="Crearpaciente">Crear Paciente</a>
+                <a asp-area="" asp-controller="Paciente" asp-action="Detallepaciente">Detalle Paciente</a>
+                <a asp-area="" asp-controller="Paciente" asp-action="Editarpaciente">Editar Paciente</a>
+                <a asp-area="" asp-controller="Paciente" asp-action="Listarpaciente">Pacientes</a>
+                <a asp-area="" asp-controller="Citas" asp-action="ListarCitas">Citas</a>
+                
+                <a href="#">Charlas</a>
+                
+                <a asp-area="" asp-controller="Login" asp-action="Logout">Cerrar Sesión</a>
+            </nav>
+            <label for="btn-menu-desplegable" class="fa-solid fa-xmark"></label>
+        </div>
+    </div>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

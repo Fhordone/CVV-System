@@ -1,0 +1,108 @@
+@*
+For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Listar Citas";
+}
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Pruebas</title>
+    <link rel="stylesheet" href="~/css/Listarpaciente.css" />
+    <link rel="stylesheet" href="~/css/General.css" />
+</head>
+
+<body>
+    <h1 class='tittle-text'>Citas Registradas</h1>
+    <!-- Contenedor para alinear el buscador y el botón a los extremos -->
+    <div class="header-container">
+        <!-- Buscador -->
+        <div class="search-container">
+            <p>Buscar:</p>
+            <input type="text" id="searchInput" placeholder="Ingrese el DNI del afiliado">
+            <button onclick="searchTable()">Buscar</button>
+        </div>
+
+        <!-- Botón "Crear Prueba" -->
+        <button class="crear-prueba-btn">Crear Prueba</button>
+    </div>
+    <div class="wrap-table100">
+        <div class="table100">
+            <table>
+                <thead>
+                    <tr class="table100-head">
+                        <th class="column1">ID</th>
+                        <th class="column4">DNI</th>
+                        <th class="column4">Fecha</th>
+                        <th class="column4">Urgencia</th>
+                        <th class="column4">Estado</th>
+                        <th class="column6">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="column1">01</td>
+                        <td class="column4">75985698</td>
+                        <td class="column4">2023-01-12</td>
+                        <td class="column4">Si</td>
+                        <td class="column4">Falta Pagar</td>
+                        <td class="column6">
+                            <div class="acciones-btns">
+                                <button class="visualizar-btn">Ver</button>
+                                <button class="editar-btn">Editar</button>
+                                <button class="eliminar-btn">Eliminar</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="column1">01</td>
+                        <td class="column4">75985698</td>
+                        <td class="column4">2023-01-12</td>
+                        <td class="column4">Si</td>
+                        <td class="column4">Falta Pagar</td>
+                        <td class="column6">
+                            <div class="acciones-btns">
+                                <button class="visualizar-btn">Ver</button>
+                                <button class="editar-btn">Editar</button>
+                                <button class="eliminar-btn">Eliminar</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="column1">01</td>
+                        <td class="column4">75985698</td>
+                        <td class="column4">2023-01-12</td>
+                        <td class="column4">Si</td>
+                        <td class="column4">Falta Pagar</td>
+                        <td class="column6">
+                            <div class="acciones-btns">
+                                <button class="visualizar-btn">Ver</button>
+                                <button class="editar-btn">Editar</button>
+                                <button class="eliminar-btn">Eliminar</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="column1">01</td>
+                        <td class="column4">75985698</td>
+                        <td class="column4">2023-01-12</td>
+                        <td class="column4">Si</td>
+                        <td class="column4">Falta Pagar</td>
+                        <td class="column6">
+                            <div class="acciones-btns">
+                                <button class="visualizar-btn">Ver</button>
+                                <button class="editar-btn">Editar</button>
+                                <button class="eliminar-btn">Eliminar</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
