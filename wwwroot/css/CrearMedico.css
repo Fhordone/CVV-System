@@ -1,0 +1,106 @@
+body {
+    background-color: #F4F7FA;
+}
+
+h1{
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 2em;
+    box-sizing: border-box;
+    font-weight: 700;
+}
+h3{
+    display: block;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 21px;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+.box-general {
+    color: #10495F;
+    width: 100vw;  
+}
+
+.box-content {
+    display: flex;
+}
+
+.box-user {
+    display: flex;
+    flex: 1;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.box-user-content{
+    height: 60vh;
+    width: 60%;
+    border-radius: 10px;
+    background-color: #F4F7FA;
+    text-align: center;
+    align-items: center;
+}
+.box-formulario {
+    flex: 2;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.form-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+}
+.Texto-input {
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.input-form {
+    border-radius: 20px;
+    width: 20vw;
+    height: 30px;
+    margin-bottom: 0px;
+    background-color: #ffffff;
+    border: none;
+}
+
+.tittle-text{
+    margin: 0.67em 0.67em;
+    text-align: left;
+  }
+
+.photo-perfil{
+    margin-top: 20px;
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.user-information{
+    border-top: #e6e6e6 1px solid;
+    font-size: 14px;
+}
+.box-crear-formulario{
+    width: 100vw;
+    padding: 20px 50px ;
+}
+.btn-formulario{
+    border-radius: 5px;
+    background-color: #10495F;
+    width: 15%;
+    font-size: 16px;
+    padding: 10px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
