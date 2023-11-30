@@ -5,12 +5,12 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width" />
-        <title>Crear paciente</title>
+        <title>Crear Paciente</title>
         <link rel="stylesheet" href="~/css/Crearpaciente.css" />
     </head>
     <body>
         <div class="box-general">
-            <h1 class='tittle-text'>Crear paciente</h1>
+            <h1 class='tittle-text'>Crear Paciente</h1>
                 <div class='box-crear-formulario'>
                     <h3 class="Subtittle">Información General</h3>
                         <div class="form-group">
@@ -20,7 +20,7 @@
                             </div>
                             <div class="form-column">
                                 <label class="Texto-input">Fecha de Nacimiento</label>
-                                <input type="text" class="input-form" />
+                                <input type="date" class="input-form" id="fechaNacimiento" name="fechaNacimiento"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -29,13 +29,16 @@
                                 <input type="text" class="input-form" />
                             </div>
                             <div class="form-column">
-                                <label class="Texto-input">Genero</label>
-                                <input type="text" class="input-form" />
+                                <label class="Texto-input">Género</label>
+                                <select class="input-form" id="genero" name="genero">
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Femenino</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-column">
-                                <label class="Texto-input">Email</label>
+                                <label class="Texto-input">Dirección</label>
                                 <input type="text" class="input-form" />
                             </div>
                             <div class="form-column">
@@ -43,28 +46,31 @@
                                 <input type="text" class="input-form" />
                             </div>
                         </div>
-                    <h3 class="Subtittle">Ubicación</h3>
                         <div class="form-group">
                             <div class="form-column">
-                                <label class="Texto-input">Pais</label>
-                                <input type="text" class="input-form" />
+                                <label class="Texto-input">Tipo de documento</label>
+                                <select class="input-form" id="tip_doc" name="tip_doc">
+                                    <option value="DNI">DNI</option>
+                                    <option value="CC">Cédula de ciudadanía</option>
+                                    <option value="TP">Tarjeta pasaporte</option>
+                                </select>
                             </div>
                             <div class="form-column">
-                                <label class="Texto-input">Provincia</label>
+                                <label class="Texto-input">Correo electrónico</label>
                                 <input type="text" class="input-form" />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-column">
-                                <label class="Texto-input">Distrito</label>
+                                <label class="Texto-input">Nro. de documento</label>
                                 <input type="text" class="input-form" />
                             </div>
                             <div class="form-column">
-                                <label class="Texto-input">Código Postal</label>
-                                <input type="text" class="input-form" />
+                                <label class="Texto-input">Contraseña</label>
+                                <input type="password" class="input-form" id="password" name="password"/>
                             </div>
                         </div>
-                    <button class="btn-formulario">Registrar Paciente </button>
+                    <button class="btn-formulario">Registrar Paciente</button>
                 </div>
         </div>
     </body>

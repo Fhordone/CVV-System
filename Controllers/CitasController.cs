@@ -22,7 +22,10 @@ namespace CCVLab.Controllers
         {
             return View();
         }
-
+        public ActionResult DetalleCitas()
+        {
+            return View();
+        }
         // POST: LoginController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
