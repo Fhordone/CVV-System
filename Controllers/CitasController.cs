@@ -1,14 +1,22 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using CCVLab.Models;
+using CCVLab.Services;
 
 namespace CCVLab.Controllers
 {
     public class CitasController : Controller
     {
-        // GET: LoginController
-        public ActionResult ListarCitas()
+        private readonly IService_API _serviceApi;
+        public CitasController (IService_API service_API)
         {
-            return View();
+            _serviceApi = service_API;
+        }
+        // GET: LoginController
+        public async Task<ActionResult> ListarCitas()
+        {
+            List<Cita> listarcitas = await _serviceApi.listarcitas();
+            return View(listarcitas);
         }
 
         // GET: LoginController/Details/5

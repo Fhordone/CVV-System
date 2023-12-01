@@ -6,105 +6,96 @@
     <head>
         <meta name="viewport" content="width=device-width" />
         <title>Editar citas</title>
-        <link rel="stylesheet" href="~/css/EditarCitas.css" />
+        <link rel="stylesheet" href="~/css/CrearCitas.css" />
     </head>
     <body>
-        <div class="box-general">
-            <h1 class='tittle-text'>Editar citas</h1>
-                <div class='box-crear-formulario'>
-                    <h3 class="Subtittle">Datos del Cliente</h3>
-                        <div class="form-group">
-                            <div class="form-column">
-                                <label class="Texto-input">Tipo de documento</label>
-                                <input type="text" class="input-form" />
-                            </div>
-                            <div class="form-column">
-                                <label class="Texto-input">Fecha de nacimiento</label>
-                                <input type="text" class="input-form" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-column">
-                                <label class="Texto-input">Nro. de documento</label>
-                                <input type="text" class="input-form" />
-                            </div>
-                            <div class="form-column">
-                                <label class="Texto-input">Email</label>
-                                <input type="text" class="input-form" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-column">
-                                <label class="Texto-input">Nombres completos</label>
-                                <input type="text" class="input-form" />
-                            </div>
-                        </div>                    
-                    <h3 class="Subtittle">Detalles de la Cita</h3>
-                        <div class="form-group">
-                            <div class="form-column">
-                                <label class="Texto-input">Fecha</label>
-                                <input type="text" class="input-form" />
-                            </div>
-                            <div class="form-column">
-                                <label class="Texto-input">Hora</label>
-                                <input type="text" class="input-form" />
-                            </div>
-                        </div>
-                        <div class="form-group">   
-                            <div class="form-column">
-                                <label class="Texto-input">Estado</label>
-                                <input type="text" class="input-form" />
-                            </div>
-                            <div class="form-column">
-                                <label class="Texto-input">Venta</label>
-                                <input type="text" class="input-form" />
-                            </div>
-                        </div>
-                        <div class="form-group">   
-                            <div class="form-column">
-                                <label class="Texto-input">Prueba</label>
-                                <input type="text" class="input-form" />
-                            </div>
-                            <div class="form-column">
-                                <label class="Texto-input">IGV</label>
-                                <input type="text" class="input-form" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-column">
-                                <table class="tabla" id="miTabla">
-                                    <thead>
-                                    <tr>
-                                        <th>Nombre de la Prueba</th>
-                                        <th>Costo</th>
-                                        <!-- Agrega más columnas según sea necesario -->
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <!-- Las filas se agregarán dinámicamente aquí -->
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="form-column">
-                                <label class="Texto-input">Total</label>
-                                <input type="text" class="input-form" />
-                            </div>
-                        </div>
-                        <div class="form-group">   
-                            <div class="form-column"> </div>
-                            <div class="form-column">
-                                <label class="Texto-input">Urgencia</label>
-                                <input type="text" class="input-form" />
-                            </div>
-                        </div>
-                        <div class="form-group">   
-                            <div class="form-column"> </div>
-                            <div class="form-column">
-                                <label class="Texto-input">Observación</label>
-                                <input type="text" class="input-form" />
-                            </div>
-                        </div>
+        <h1 class='tittle-text'>Detalle de la Cita</h1>
+    <div class='box-crear-formulario'>
+        <h3 class="Subtittle">Datos del Cliente</h3>
+        <div class='box-data-user'>
+            <div class='box-data-user-column1'>
+                <div class="file">
+                    <label class="Texto-input">Tipo de documento</label>
+                    <select class="input-form" id="estado" name="estado" disabled>
+                        <option value="1">DNI</option>
+                        <option value="2">Carné de Extranjería</option>
+                    </select>
                 </div>
+                <div class="file">
+                    <label class="Texto-input">Nro. de documento</label>
+                    <input id="dni" name="dni" type="number" class="input-form" disabled/>
+                </div>
+                <div class="file">
+                    <label class="Texto-input">Nombres</label>
+                    <input readonly="" id="nombre" type="text" class="input-form" disabled/>
+                </div>
+                <div class="file">
+                    <label class="Texto-input">Apellidos</label>
+                    <input readonly="" id="apellido" type="text" class="input-form" disabled/>
+                </div>
+            </div>
+            <div class='box-data-user-column2'>
+                <div class="file">
+                    <label class="Texto-input">Fecha de nacimiento</label>
+                    <input type="date" class="input-form" id="fecha" name="fecha" disabled/>
+                </div>
+                <div class="file">
+                    <label class="Texto-input">Email</label>
+                    <input type="text" class="input-form" disabled/>
+                </div>
+                <div class="file">
+                    <label class="Texto-input">Dirección</label>
+                    <input type="text" class="input-form" disabled/>
+                </div>
+            </div>
         </div>
+        <h3 class="Subtittle">Detalles de la cita</h3>
+        <div class='box-data-cita'>
+            <div class='box-data-cita-column1'>
+                <div class="file">
+                    <label class="Texto-input">Fecha</label>
+                    <input type="date" class="input-form" id="fecha" name="fecha" disabled/>
+                </div>
+                <div class="file">
+                    <label class="Texto-input">Estado</label>
+                    <select class="input-form" id="estado" name="estado" disabled>
+                        <option value="1">En espera</option>
+                        <option value="2">En proceso</option>
+                        <option value="3">En revisión</option>
+                        <option value="4">Finalizado</option>
+                        <option value="5">Cancelado</option>
+                        <option value="6">Suspendido</option>
+                    </select>
+                </div>
+                <div class="file">
+                    <label class="Texto-input">Prueba</label>
+                    <select class="input-form" id="prueba" name="prueba" disabled>
+                        <option value="hc">Hemograma completo</option>
+                        <option value="pl">Perfil Lipídico</option>
+                        <option value="g">Glucosa</option>
+                        <option value="pe">Prueba de embarazo</option>
+                    </select>
+                </div>
+            </div>
+            <div class='box-data-cita-column2'>
+                <div class="file">
+                    <label class="Texto-input">Hora</label>
+                    <input type="time" class="input-form" id="hora" name="hora" disabled/>
+                </div>
+                <div class="file">
+                    <label class="Texto-input">Sucursal</label>
+                    <select class="input-form" id="sucursal" name="sucursal" disabled>
+                        <option value="lima">Lima</option>
+                        <option value="arequipa">Arequipa</option>
+                        <option value="ica">Ica</option>
+                    </select>
+                </div>
+                <div class="file">
+                    <label class="Texto-input">Total</label>
+                    <input type="text" class="input-form" disabled/>
+                </div>
+            </div>
+        </div>
+    </div>
     </body>
 </html>

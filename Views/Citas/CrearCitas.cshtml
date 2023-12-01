@@ -52,6 +52,12 @@
                     <label class="Texto-input">Dirección</label>
                     <input type="text" class="input-form" />
                 </div>
+                <div class="file">
+                    <label class="Texto-input">Encargado actual:</label>
+                    <select class="input-form" id="prueba" name="prueba">
+                        <option value="1">Carlos Gonzales</option>
+                    </select>
+                </div>
             </div>
         </div>
         <h3 class="Subtittle">Detalles de la cita</h3>
@@ -99,8 +105,21 @@
                     <label class="Texto-input">Total</label>
                     <input type="text" class="input-form" />
                 </div>
+                <div class="file">
+                    <label class="Texto-input">Estado de Pago</label>
+                    <select class="input-form" id="sucursal" name="sucursal">
+                        <option value="1">Falta Pagar</option>
+                        <option value="2">Medio Pago</option>
+                        <option value="3">Pagado</option>
+                    </select>
+                </div>
+                <div class="file">
+                    <label class="Texto-input">Observación</label>
+                    <textarea id="miTextArea" name="miTextArea" rows="4" cols="50">Ninguna</textarea>
+                </div>
             </div>
         </div>
+        <button class="btn-formulario">Registrar Cita</button>
     </div>
     <script src="~/js/Main.js" asp-append-version="true"></script>
 </body>

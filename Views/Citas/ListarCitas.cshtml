@@ -1,6 +1,4 @@
-@*
-For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+@model List<Cita>
 @{
     ViewData["Title"] = "Listar Citas";
 }
@@ -43,62 +41,23 @@ For more information on enabling MVC for empty projects, visit https://go.micros
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="column1">01</td>
-                        <td class="column4">75985698</td>
-                        <td class="column4">2023-01-12</td>
-                        <td class="column4">Si</td>
-                        <td class="column4">Falta Pagar</td>
-                        <td class="column6">
-                            <div class="acciones-btns">
-                                <button class="visualizar-btn">Ver</button>
-                                <button class="editar-btn">Editar</button>
-                                <button class="eliminar-btn">Eliminar</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="column1">01</td>
-                        <td class="column4">75985698</td>
-                        <td class="column4">2023-01-12</td>
-                        <td class="column4">Si</td>
-                        <td class="column4">Falta Pagar</td>
-                        <td class="column6">
-                            <div class="acciones-btns">
-                                <button class="visualizar-btn">Ver</button>
-                                <button class="editar-btn">Editar</button>
-                                <button class="eliminar-btn">Eliminar</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="column1">01</td>
-                        <td class="column4">75985698</td>
-                        <td class="column4">2023-01-12</td>
-                        <td class="column4">Si</td>
-                        <td class="column4">Falta Pagar</td>
-                        <td class="column6">
-                            <div class="acciones-btns">
-                                <button class="visualizar-btn">Ver</button>
-                                <button class="editar-btn">Editar</button>
-                                <button class="eliminar-btn">Eliminar</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="column1">01</td>
-                        <td class="column4">75985698</td>
-                        <td class="column4">2023-01-12</td>
-                        <td class="column4">Si</td>
-                        <td class="column4">Falta Pagar</td>
-                        <td class="column6">
-                            <div class="acciones-btns">
-                                <button class="visualizar-btn">Ver</button>
-                                <button class="editar-btn">Editar</button>
-                                <button class="eliminar-btn">Eliminar</button>
-                            </div>
-                        </td>
-                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="column1">@item.citaID</td>
+                            <td class="column4">@item.DNI_Paciente</td>
+                            <td class="column4">@item.Fecha</td>
+                            <td class="column4">@item.Urgencia</td>
+                            <td class="column4">@item.FK_Estado</td>
+                            <td class="column6">
+                                <div class="acciones-btns">
+                                    <button class="visualizar-btn">Ver</button>
+                                    <button class="editar-btn">Editar</button>
+                                    <button class="eliminar-btn">Eliminar</button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
