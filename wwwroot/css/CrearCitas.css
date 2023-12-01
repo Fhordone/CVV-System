@@ -18,68 +18,7 @@ h3{
     margin-inline-end: 0px;
     font-weight: bold;
 }
-.box-general {
-    color: #10495F;
-    width: 100vw;  
-}
-.box-content {
-    display: flex;
-}
-.box-user {
-    display: flex;
-    flex: 1;
-    padding: 20px;
-    justify-content: center;
-    align-items: center;
-}
-.box-user-content{
-    height: 60vh;
-    width: 60%;
-    border-radius: 10px;
-    background-color: #F4F7FA;
-    text-align: center;
-    align-items: center;
-}
-.tabla{
-    border-collapse: collapse;
-    width: 45%;
-    margin-top: 10px;
-}
-th, td {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 5px;
-}
-th {
-    background-color: #f2f2f2;
-}
-.btn-prueba{
-    border-radius: 3px;
-    background-color: #464647;
-    width: 25%;
-    font-size: 13px;
-    padding: 7px;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-.box-formulario {
-    flex: 2;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-}
-.form-group {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-.form-column {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    margin-right: 10px;
-}
+
 .Texto-input {
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
@@ -114,3 +53,52 @@ th {
     border: none;
     cursor: pointer;
 }
+
+/* Ajusta estos estilos en tu archivo CrearCitas.css */
+
+.box-data-user{
+    display: flex;
+}
+.box-data-cita{
+    display: flex;
+}
+.box-data-user-column1{
+    order: 1;
+    flex-direction: column;
+    flex-flow: column wrap;
+}
+
+.box-data-user-column2{
+    order: 2;
+}
+.file {
+    display: flex;
+    width: 40vw;
+    flex-direction: column;
+    margin-bottom: 15px; /* Ajusta según tu preferencia para agregar espacio entre cada fila */
+}
+
+.input-form {
+    width: 50%; /* O ajusta el ancho según tus necesidades */
+    margin-top: 5px;
+    padding-left: 5px; /* Ajusta según tu preferencia para agregar espacio entre label e input */
+}
+
+.btn-validar {
+    margin-left: 10px; /* Ajusta según tu preferencia para agregar espacio entre input y botón */
+    border-radius: 5px;
+    background-color: #10495F;
+    width: 15%;
+    font-size: 16px;
+    padding: 5px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-validar:hover{
+    background-color: #2281a7;
+}
+
+/* Resto de tus estilos... */
