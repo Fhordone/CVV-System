@@ -82,33 +82,32 @@ namespace CCVLab
 
             return respuesta;
         }
-        public async Task<bool> updatecita(int ID,Cita objeto)
+        public async Task<bool> updatecita(int ID, Cita objeto)
         {
             bool respuesta = false;
-
-    try
-    {
-        using (var cliente = new HttpClient())
-        {
-            cliente.BaseAddress = new Uri(_baseurl);
-
-            var content = new StringContent(JsonConvert.SerializeObject(objeto), Encoding.UTF8, "application/json");
-
-            var response = await cliente.PutAsync($"api/updatecita/{ID}", content); // 
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                respuesta = true;
-            }
-        }
-    }
-    catch (Exception ex)
-    {
-        // Manejar excepciones o registrarlas según sea necesario
-        throw new Exception("Error al actualizar la cita", ex);
-    }
+                using (var cliente = new HttpClient())
+                {
+                    cliente.BaseAddress = new Uri(_baseurl);
 
-    return respuesta;
+                    var content = new StringContent(JsonConvert.SerializeObject(objeto), Encoding.UTF8, "application/json");
+
+                    var response = await cliente.PutAsync($"api/updatecita/{ID}", content); // 
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        respuesta = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar excepciones o registrarlas según sea necesario
+                throw new Exception("Error al actualizar la cita", ex);
+            }
+
+            return respuesta;
         }
     }
 }

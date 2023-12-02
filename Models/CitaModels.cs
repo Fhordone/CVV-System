@@ -2,7 +2,7 @@ namespace CCVLab.Models
 {
     public class Cita
 {
-    public int citaID { get; set; }
+    public int ID { get; set; }
     public string NombresPaciente { get; set; }
     public string ApellidosPaciente { get; set; }
     public int DNI_Paciente { get; set; }

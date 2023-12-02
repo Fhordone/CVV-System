@@ -44,14 +44,14 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td class="column1">@item.citaID</td>
+                            <td class="column1">@item.ID</td>
                             <td class="column4">@item.DNI_Paciente</td>
                             <td class="column4">@item.Fecha</td>
                             <td class="column4">@item.Urgencia</td>
                             <td class="column4">@item.FK_Estado</td>
                             <td class="column6">
                                 <div class="acciones-btns">
-                                    <button class="visualizar-btn">Ver</button>
+                                    <a asp-action="DetalleCitas" asp-controller="Citas" class="visualizar-btn">Ver</a>
                                     <button class="editar-btn">Editar</button>
                                     <button class="eliminar-btn">Eliminar</button>
                                 </div>
