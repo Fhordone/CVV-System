@@ -33,7 +33,10 @@ namespace CCVLab.Controllers
         {
             return View();
         }
-
+        public ActionResult EditarCitas()
+        {
+            return View();
+        }
         [HttpPost]
         public async Task<ActionResult> EditarCitas(int ID, Cita obj_cita)
         {
