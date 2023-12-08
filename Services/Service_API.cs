@@ -16,97 +16,71 @@ namespace CCVLab
             _baseurl = builder.GetSection("ApiSettings:baseUrl").Value;
         }
 
-        public async Task<List<Cita>> listarcitas()
+        public async Task<List<Cita>> Lista()
         {
-            List<Cita> listaCitas = new List<Cita>();
+            List<Cita> lista = new List<Cita>();
+            /*Falta Autenticación*/
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseurl);
+            var response = await cliente.GetAsync("api/ListarCita");
 
-            using (var cliente = new HttpClient())
+            if (response.IsSuccessStatusCode)
             {
-                cliente.BaseAddress = new Uri(_baseurl);
-
-                var response = await cliente.GetAsync("api/listarcitas");
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var jsonRespuesta = await response.Content.ReadAsStringAsync();
-                    listaCitas = JsonConvert.DeserializeObject<List<Cita>>(jsonRespuesta);
-                }
+                var json_respuesta = await response.Content.ReadAsStringAsync();
+                var resultado = JsonConvert.DeserializeObject<ResultadoApi>(json_respuesta);
+                lista = resultado.lista;
             }
-
-            return listaCitas;
+            return lista;
         }
 
-        public async Task<Cita> obtenercita(int ID)
+        public async Task<Cita> ObtenerCita(int ID)
         {
-            Cita cita = null; // Inicializa como null ya que no sabemos si encontraremos una cita
+            Cita objeto = new Cita();
+            /*Falta Autenticación*/
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseurl);
+            var response = await cliente.GetAsync($"api/ObtenerCita/{ID}");
 
-            try
+            if (response.IsSuccessStatusCode)
             {
-                using (var cliente = new HttpClient())
-                {
-                    cliente.BaseAddress = new Uri(_baseurl);
-
-                    var response = await cliente.GetAsync($"api/obtenercita/{ID}"); // Corregido: agregué una barra antes del ID
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var jsonRespuesta = await response.Content.ReadAsStringAsync();
-                        cita = JsonConvert.DeserializeObject<Cita>(jsonRespuesta);
-                    }
-                }
-
-                return cita;
+                var json_respuesta = await response.Content.ReadAsStringAsync();
+                var resultado = JsonConvert.DeserializeObject<ResultadoApi>(json_respuesta);
+                objeto = resultado.objeto;
             }
-            catch (Exception ex)
-            {
-                // Manejar excepciones o registrarlas según sea necesario
-                throw new Exception("Error al obtener la cita por ID", ex);
-            }
+            return objeto;
         }
-        public async Task<bool> createcita(Cita objeto)
+        public async Task<bool> CreateCita(Cita objeto)
         {
             bool respuesta = false;
-
+            /*Falta Autenticación*/
             var cliente = new HttpClient();
-
             cliente.BaseAddress = new Uri(_baseurl);
 
-            var content = new StringContent(JsonConvert.SerializeObject(objeto), Encoding.UTF8, "application/json");
+            var content = new StringContent(JsonConvert.SerializeObject(objeto),Encoding.UTF8,"application/json");
 
-            var response = await cliente.PostAsync("api/createcita", content);
+            var response = await cliente.PostAsync("api/CreateCita",content);
 
             if (response.IsSuccessStatusCode)
             {
                 respuesta = true;
             }
-
             return respuesta;
         }
-        public async Task<bool> updatecita(int ID, Cita objeto)
+        public async Task<bool> UpdateCita(Cita objeto)
         {
             bool respuesta = false;
-            try
+            /*Falta Autenticación*/
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseurl);
+
+            var content = new StringContent(JsonConvert.SerializeObject(objeto),Encoding.UTF8,"application/json");
+
+            var response = await cliente.PostAsync("api/updatecita",content);
+
+            if (response.IsSuccessStatusCode)
             {
-                using (var cliente = new HttpClient())
-                {
-                    cliente.BaseAddress = new Uri(_baseurl);
-
-                    var content = new StringContent(JsonConvert.SerializeObject(objeto), Encoding.UTF8, "application/json");
-
-                    var response = await cliente.PutAsync($"api/updatecita/{ID}", content); // 
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        respuesta = true;
-                    }
-                }
+                respuesta = true;
             }
-            catch (Exception ex)
-            {
-                // Manejar excepciones o registrarlas según sea necesario
-                throw new Exception("Error al actualizar la cita", ex);
-            }
-
             return respuesta;
         }
     }

@@ -11,6 +11,7 @@ namespace CCVLab.Data
         {
         }
         public DbSet<CCVLab.Models.Usuario> Usuarios { get; set; }
+        public DbSet<CCVLab.Models.Cita> Cita { get; set; }
         public DbSet<CCVLab.Models.Rol> Roles { get; set; }
         public DbSet<UsuarioRol> UsuarioRol { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -1,3 +1,4 @@
+@model CCVLab.Models.Cita
 @{
     ViewData["Title"] = "Editar citas";
 }
@@ -16,36 +17,33 @@
             <div class='box-data-user-column1'>
                 <div class="file">
                     <label class="Texto-input">Tipo de documento</label>
-                    <select class="input-form" id="estado" name="estado" disabled>
-                        <option value="1">DNI</option>
-                        <option value="2">Carné de Extranjería</option>
-                    </select>
+                    <input id="dni" name="dni" type="text" class="input-form" disabled asp-for="FK_Tipo_Doc"/>
                 </div>
                 <div class="file">
                     <label class="Texto-input">Nro. de documento</label>
-                    <input id="dni" name="dni" type="number" class="input-form" disabled/>
+                    <input id="dni" name="dni" type="number" class="input-form" disabled asp-for="DNI_Paciente"/>
                 </div>
                 <div class="file">
                     <label class="Texto-input">Nombres</label>
-                    <input readonly="" id="nombre" type="text" class="input-form" disabled/>
+                    <input readonly="" id="nombre" type="text" class="input-form" disabled asp-for="NombresPaciente"/>
                 </div>
                 <div class="file">
                     <label class="Texto-input">Apellidos</label>
-                    <input readonly="" id="apellido" type="text" class="input-form" disabled/>
+                    <input readonly="" id="apellido" type="text" class="input-form" disabled asp-for="ApellidosPaciente"/>
                 </div>
             </div>
             <div class='box-data-user-column2'>
                 <div class="file">
                     <label class="Texto-input">Fecha de nacimiento</label>
-                    <input type="date" class="input-form" id="fecha" name="fecha" disabled/>
+                    <input type="date" class="input-form" id="fecha" name="fecha" disabled asp-for="Fecha_Nacimiento"/>
                 </div>
                 <div class="file">
                     <label class="Texto-input">Email</label>
-                    <input type="text" class="input-form" disabled/>
+                    <input type="text" class="input-form" disabled asp-for="Email"/>
                 </div>
                 <div class="file">
                     <label class="Texto-input">Dirección</label>
-                    <input type="text" class="input-form" disabled/>
+                    <input type="text" class="input-form" disabled asp-for="Direccion"/>
                 </div>
             </div>
         </div>
@@ -54,22 +52,15 @@
             <div class='box-data-cita-column1'>
                 <div class="file">
                     <label class="Texto-input">Fecha</label>
-                    <input type="date" class="input-form" id="fecha" name="fecha" disabled/>
+                    <input type="date" class="input-form" id="fecha" name="fecha" disabled asp-for="Fecha"/>
                 </div>
                 <div class="file">
                     <label class="Texto-input">Estado</label>
-                    <select class="input-form" id="estado" name="estado" disabled>
-                        <option value="1">En espera</option>
-                        <option value="2">En proceso</option>
-                        <option value="3">En revisión</option>
-                        <option value="4">Finalizado</option>
-                        <option value="5">Cancelado</option>
-                        <option value="6">Suspendido</option>
-                    </select>
+                    <input type="text" class="input-form" id="fecha" name="fecha" disabled asp-for="FK_Estado"/>
                 </div>
                 <div class="file">
                     <label class="Texto-input">Prueba</label>
-                    <select class="input-form" id="prueba" name="prueba" disabled>
+                    <select class="input-form" id="prueba" name="prueba" disabled >
                         <option value="hc">Hemograma completo</option>
                         <option value="pl">Perfil Lipídico</option>
                         <option value="g">Glucosa</option>
@@ -80,15 +71,11 @@
             <div class='box-data-cita-column2'>
                 <div class="file">
                     <label class="Texto-input">Hora</label>
-                    <input type="time" class="input-form" id="hora" name="hora" disabled/>
+                    <input type="time" class="input-form" id="hora" name="hora" disabled asp-for="Hora"/>
                 </div>
                 <div class="file">
                     <label class="Texto-input">Sucursal</label>
-                    <select class="input-form" id="sucursal" name="sucursal" disabled>
-                        <option value="lima">Lima</option>
-                        <option value="arequipa">Arequipa</option>
-                        <option value="ica">Ica</option>
-                    </select>
+                    <input type="text" class="input-form" id="fecha" name="fecha" disabled asp-for="FK_Sucursal"/>
                 </div>
                 <div class="file">
                     <label class="Texto-input">Total</label>

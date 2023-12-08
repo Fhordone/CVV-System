@@ -1,0 +1,132 @@
+@model Cita
+@{
+    ViewData["Title"] = "Crear citas";
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Crear citas</title>
+    <link rel="stylesheet" href="~/css/CrearCitas.css" />
+</head>
+
+<body>
+    <h1 class='tittle-text'>@ViewBag.Accion</h1>
+    <form asp-action="GuardarCita" asp-controller="Citas" method="post">
+        <input type="hidden" asp-for="ID" />
+        <div class='box-crear-formulario'>
+            <h3 class="Subtittle">Datos del Cliente</h3>
+            <div class='box-data-user'>
+                <div class='box-data-user-column1'>
+                    <div class="file">
+                        <label class="Texto-input">Tipo de documento</label>
+                        <select class="input-form" id="estado" name="estado" asp-for="FK_Tipo_Doc">
+                            <option value="1">DNI</option>
+                            <option value="2">Carné de Extranjería</option>
+                        </select>
+                    </div>
+                    <div class="file">
+                        <label class="Texto-input">Nro. de documento</label>
+                        <div class="input-container">
+                            <input id="dni" name="dni" type="number" class="input-form" asp-action="DNI_Paciente"/>
+                            <button id="boton" class="btn-validar">Validar</button>
+                        </div>
+                    </div>
+                    <div class="file">
+                        <label class="Texto-input">Nombres</label>
+                        <input readonly="" id="nombre" type="text" class="input-form" asp-for="NombresPaciente"/>
+                    </div>
+                    <div class="file">
+                        <label class="Texto-input">Apellidos</label>
+                        <input readonly="" id="apellido" type="text" class="input-form" asp-for="ApellidosPaciente"/>
+                    </div>
+                </div>
+                <div class='box-data-user-column2'>
+                    <div class="file">
+                        <label class="Texto-input">Fecha de nacimiento</label>
+                        <input type="date" class="input-form" id="fecha" name="fecha" asp-for="Fecha_Nacimiento"/>
+                    </div>
+                    <div class="file">
+                        <label class="Texto-input">Email</label>
+                        <input type="text" class="input-form" asp-for="Email"/>
+                    </div>
+                    <div class="file">
+                        <label class="Texto-input">Dirección</label>
+                        <input type="text" class="input-form" asp-for="Direccion"/>
+                    </div>
+                    <div class="file">
+                        <label class="Texto-input">Encargado actual:</label>
+                        <select class="input-form" name="prueba" asp-for="FK_Usuario">
+                            <option value="1">Carlos Gonzales</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <h3 class="Subtittle">Detalles de la cita</h3>
+            <div class='box-data-cita'>
+                <div class='box-data-cita-column1'>
+                    <div class="file">
+                        <label class="Texto-input">Fecha</label>
+                        <input type="date" class="input-form" name="fecha" />
+                    </div>
+                    <div class="file">
+                        <label class="Texto-input">Estado</label>
+                        <select class="input-form" id="estado" name="estado">
+                            <option value="1">En espera</option>
+                            <option value="2">En proceso</option>
+                            <option value="3">En revisión</option>
+                            <option value="4">Finalizado</option>
+                            <option value="5">Cancelado</option>
+                            <option value="6">Suspendido</option>
+                        </select>
+                    </div>
+                    <div class="file">
+                        <label class="Texto-input">Prueba</label>
+                        <select class="input-form" name="prueba">
+                            <option value="1">Hemograma completo</option>
+                            <option value="2">Perfil Lipídico</option>
+                            <option value="3">Glucosa</option>
+                            <option value="4">Prueba de embarazo</option>
+                        </select>
+                    </div>
+                </div>
+                <div class='box-data-cita-column2'>
+                    <div class="file">
+                        <label class="Texto-input">Hora</label>
+                        <input type="time" class="input-form" id="hora" name="hora" />
+                    </div>
+                    <div class="file">
+                        <label class="Texto-input">Sucursal</label>
+                        <select class="input-form" id="sucursal" name="sucursal">
+                            <option value="1">Lima</option>
+                            <option value="2">Arequipa</option>
+                            <option value="3">Ica</option>
+                        </select>
+                    </div>
+                    <div class="file">
+                        <label class="Texto-input">Total</label>
+                        <input type="text" class="input-form" />
+                    </div>
+                    <div class="file">
+                        <label class="Texto-input">Estado de Pago</label>
+                        <select class="input-form" id="sucursal" name="sucursal">
+                            <option value="1">Falta Pagar</option>
+                            <option value="2">Medio Pago</option>
+                            <option value="3">Pagado</option>
+                        </select>
+                    </div>
+                    <div class="file">
+                        <label class="Texto-input">Observación</label>
+                        <textarea id="miTextArea" name="miTextArea" rows="4" cols="50">Ninguna</textarea>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn-formulario">Guardar Cambios</button>
+            <a asp-action="ListarCitas" asp-controller="Citas" class="btn btn-warning btn-sm">Volver a lista</a>
+        </div>
+    </form>
+    <script src="~/js/Main.js" asp-append-version="true"></script>
+</body>
+
+</html>

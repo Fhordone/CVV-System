@@ -4,10 +4,10 @@ namespace CCVLab.Services
 {
     public interface IService_API
     {
-        Task<List<Cita>> listarcitas();
-        Task<Cita> obtenercita(int ID);
-        Task<bool> createcita(Cita objeto);
-        Task<bool> updatecita (int ID,Cita objeto);
+        Task<List<Cita>> Lista();
+        Task<Cita> ObtenerCita(int ID);
+        Task<bool> CreateCita(Cita objeto);
+        Task<bool> UpdateCita (Cita objeto);
     }
 }
 

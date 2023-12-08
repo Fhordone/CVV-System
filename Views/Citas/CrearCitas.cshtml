@@ -1,3 +1,4 @@
+@model CreateCitaModel
 @{
     ViewData["Title"] = "Crear citas";
 }
@@ -12,6 +13,7 @@
 
 <body>
     <h1 class='tittle-text'>Crear Citas</h1>
+    <form asp-action="GuardarCita" asp-controller="Citas" method="post"></form>
     <div class='box-crear-formulario'>
         <h3 class="Subtittle">Datos del Cliente</h3>
         <div class='box-data-user'>

@@ -25,7 +25,7 @@
         </div>
 
         <!-- Botón "Crear Prueba" -->
-        <a asp-action="CrearCitas" asp-controller="Citas" class="crear-prueba-btn">Crear Prueba</a>
+        <a asp-action="Cita" asp-controller="Citas" asp-route-ID="0" class="crear-prueba-btn">Crear Prueba</a>
     </div>
     <div class="wrap-table100">
         <div class="table100">
@@ -47,12 +47,12 @@
                             <td class="column1">@item.ID</td>
                             <td class="column4">@item.DNI_Paciente</td>
                             <td class="column4">@item.Fecha</td>
-                            <td class="column4">@item.Urgencia</td>
+                            <td class="column4">@item.FK_Urgencia</td>
                             <td class="column4">@item.FK_Estado</td>
                             <td class="column6">
                                 <div class="acciones-btns">
-                                    <a asp-action="DetalleCitas" asp-controller="Citas" class="visualizar-btn">Ver</a>
-                                    <button class="editar-btn">Editar</button>
+                                    <a asp-action="DetalleCitas" asp-controller="Citas" asp-route-ID="@item.ID" class="visualizar-btn">Ver</a>
+                                    <a asp-action="Cita" asp-controller="Citas" asp-route-ID="@item.ID" class="editar-btn">Editar</a>
                                     <button class="eliminar-btn">Eliminar</button>
                                 </div>
                             </td>
