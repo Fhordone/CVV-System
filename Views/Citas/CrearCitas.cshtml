@@ -14,49 +14,41 @@
 <body>
     <h1 class='tittle-text'>Crear Citas</h1>
     <form asp-action="GuardarCita" asp-controller="Citas" method="post">
-    <div class='box-crear-formulario'>
-        <h3 class="Subtittle">Datos del Cliente</h3>
-        <div class='box-data-user'>
-            <div class='box-data-user-column1'>
-                <div class="file">
-                    <label class="Texto-input">Tipo de documento</label>
-                    <select class="input-form" id="estado" name="estado">
-                        <option value="1">DNI</option>
-                        <option value="2">Carné de Extranjería</option>
-                    </select>
-                </div>
-                <div class="file">
-                    <label class="Texto-input">Nombres</label>
-                    <div class="input-container">
-                        <select asp-for="FK_Paciente" class="input-form">
-                            <option value="">Seleccione un paciente</option>
-                            @foreach (var paciente in ViewBag.ListaPacientes)
-                            {
-                                <option value="@paciente.ID">@paciente.Nombres @paciente.Apellidos</option>
-                            }
-                        </select>
+        <div class='box-crear-formulario'>
+            <h3 class="Subtittle">Datos del Cliente</h3>
+            <div class='box-data-user'>
+                <div class='box-data-user-column1'>
+                    <div class="file">
+                        <label class="Texto-input">Tipo de documento</label>
+                        <input readonly="" id="Tipo_Documento" type="text" class="input-form" />
                     </div>
-                </div>
-
-            </div>
-            <div class='box-data-user-column2'>
-                <div class="file">
-                    <label class="Texto-input">Nro. de documento</label>
-                    <div class="input-container">
-                        <input type="text" id="searchInput" placeholder="Buscar DNI" oninput="filterOptions()">
-                        <select asp-for="ID" class="input-form" id="selectDocumento">
-                            <option value="">Seleccione un número de Doc.</option>
-                            @foreach (var paciente in ViewBag.ListaPacientes)
-                            {
-                                <option value="@paciente.ID">@paciente.Nro_DNI</option>
-                            }
-                        </select>
-                        <button id="boton" class="btn-validar">Validar</button>
+                    <div class="file">
+                        <label class="Texto-input">Nombres</label>
+                        <input readonly="" id="nombres" type="text" class="input-form" />
                     </div>
-                </div>
 
-                <script>
-                    function filterOptions() {
+                </div>
+                <div class='box-data-user-column2'>
+                    <div class="file">
+                        <label class="Texto-input">Nro. de documento</label>
+                        <div class="input-container">
+                            <input type="text" id="searchInput" placeholder="Buscar DNI" oninput="filterOptions()">
+                            <select id="selectDocumento" class="input-form" asp-for="FK_Paciente">
+                                <option value="">Seleccione un número de Doc.</option>
+                                @foreach (var paciente in ViewBag.ListaPacientes)
+                                {
+                                    <option value="@paciente.ID" data-tipo-documento="@paciente.Tipo_Documento"
+                                        data-nombres="@paciente.Nombres" data-apellidos="@paciente.Apellidos">
+                                        @paciente.Nro_DNI
+                                    </option>
+                                }
+                            </select>
+                            <button id="boton" class="btn-validar">Validar</button>
+                        </div>
+                    </div>
+
+                    <script>
+                        function filterOptions() {
                         var input, filter, select, options, option, i, txtValue;
                         input = document.getElementById("searchInput");
                         filter = input.value.toUpperCase();
@@ -73,32 +65,64 @@
                             }
                         }
                     }
-                </script>
-                <div class="file">
-                    <label class="Texto-input">Apellidos</label>
-                    <input readonly="" id="apellido" type="text" class="input-form" />
-                </div>
 
+                        // Función para actualizar los campos con los datos del paciente seleccionado
+                        function actualizarDatosPaciente() {
+                            var selectDocumento = document.getElementById("selectDocumento");
+                            var Tipo_Documento = document.getElementById("Tipo_Documento");
+                            var nombres = document.getElementById("nombres");
+                            var apellidos = document.getElementById("apellido");
+
+                            // Obtener el índice del elemento seleccionado
+                            var selectedIndex = selectDocumento.selectedIndex;
+
+                            // Verificar si se ha seleccionado un paciente
+                            if (selectedIndex !== -1) {
+                                // Obtener los atributos personalizados del elemento seleccionado
+                                Tipo_Documento.value = selectDocumento.options[selectedIndex].getAttribute("data-tipo-documento");
+                                nombres.value = selectDocumento.options[selectedIndex].getAttribute("data-nombres");
+                                apellidos.value = selectDocumento.options[selectedIndex].getAttribute("data-apellidos");
+                            } else {
+                                // Limpiar campos si no hay paciente seleccionado
+                                Tipo_Documento.value = "";
+                                nombres.value = "";
+                                apellidos.value = "";
+                            }
+                        }
+
+                        // Agregar manejadores de eventos
+                        var selectDocumento = document.getElementById("selectDocumento");
+                        selectDocumento.addEventListener('change', function () {
+                            // Actualizar datos del paciente cuando se selecciona un documento
+                            actualizarDatosPaciente();
+                        });
+                    </script>
+
+                    <div class="file">
+                        <label class="Texto-input">Apellidos</label>
+                        <input readonly="" id="apellido" type="text" class="input-form" />
+                    </div>
+
+                </div>
             </div>
-        </div>
-        <h3 class="Subtittle">Detalles de la cita</h3>
-        <div class='box-data-cita'>
-            <div class='box-data-cita-column1'>
-                <div class="file">
-                    <label class="Texto-input">Fecha</label>
-                    <input type="date" class="input-form" id="fecha" name="fecha" asp-for="Fecha"/>
-                </div>
-                <div class="file">
-                    <label class="Texto-input">Estado</label>
+            <h3 class="Subtittle">Detalles de la cita</h3>
+            <div class='box-data-cita'>
+                <div class='box-data-cita-column1'>
+                    <div class="file">
+                        <label class="Texto-input">Fecha</label>
+                        <input type="date" class="input-form" id="fecha" name="fecha" asp-for="Fecha" />
+                    </div>
+                    <div class="file">
+                        <label class="Texto-input">Estado</label>
                         <select class="input-form" id="estado" name="FK_Estado" asp-for="FK_Estado">
-                        <option value="1">En espera</option>
-                        <option value="2">En proceso</option>
-                        <option value="3">En revisión</option>
-                        <option value="4">Finalizado</option>
-                        <option value="5">Cancelado</option>
-                        <option value="6">Suspendido</option>
-                    </select>
-                </div>
+                            <option value="1">En espera</option>
+                            <option value="2">En proceso</option>
+                            <option value="3">En revisión</option>
+                            <option value="4">Finalizado</option>
+                            <option value="5">Cancelado</option>
+                            <option value="6">Suspendido</option>
+                        </select>
+                    </div>
 
                     <div class="file">
                         <label class="Texto-input">Exámenes Médicos</label>
@@ -119,7 +143,8 @@
                                         <td>@examen.Nombre</td>
                                         <td>@examen.Precio</td>
                                         <td>
-                                            <input type="checkbox" class="checkboxExamen" data-precio="@examen.Precio" name="Examenes" value="@examen.ID" />
+                                            <input type="checkbox" class="checkboxExamen" data-precio="@examen.Precio"
+                                                name="Examenes" value="@examen.ID" />
                                         </td>
                                     </tr>
                                 }
@@ -127,33 +152,33 @@
                         </table>
                     </div>
 
-                <div class="file">
-                    <label class="Texto-input">Total Unitario</label>
-                    <input type="text" class="input-form" id="totalUnitario" readonly />
-                </div>
+                    <div class="file">
+                        <label class="Texto-input">Total Unitario</label>
+                        <input type="text" class="input-form" id="totalUnitario" readonly />
+                    </div>
 
-                <script>
-                    // Función para calcular y actualizar el Total Unitario, IGV y Monto Total
-                    function actualizarTotales() {
-                        var totalUnitario = 0;
-                        // Obtener todos los checkboxes seleccionados
-                        var checkboxes = document.querySelectorAll('.checkboxExamen:checked');
-                        checkboxes.forEach(function (checkbox) {
-                            // Sumar el precio de los exámenes seleccionados
-                            totalUnitario += parseFloat(checkbox.getAttribute('data-precio'));
-                        });
+                    <script>
+                        // Función para calcular y actualizar el Total Unitario, IGV y Monto Total
+                        function actualizarTotales() {
+                            var totalUnitario = 0;
+                            // Obtener todos los checkboxes seleccionados
+                            var checkboxes = document.querySelectorAll('.checkboxExamen:checked');
+                            checkboxes.forEach(function (checkbox) {
+                                // Sumar el precio de los exámenes seleccionados
+                                totalUnitario += parseFloat(checkbox.getAttribute('data-precio'));
+                            });
 
-                        // Calcular IGV (18%)
-                        var igv = totalUnitario * 0.18;
+                            // Calcular IGV (18%)
+                            var igv = totalUnitario * 0.18;
 
-                        // Calcular Monto Total sumando el IGV al Total Unitario
-                        var montoTotal = totalUnitario + igv;
+                            // Calcular Monto Total sumando el IGV al Total Unitario
+                            var montoTotal = totalUnitario + igv;
 
-                        // Actualizar los campos
-                        document.getElementById('totalUnitario').value = totalUnitario.toFixed(2);
-                        document.getElementById('igv').value = igv.toFixed(2);
-                        document.getElementById('montoTotal').value = montoTotal.toFixed(2);
-                    }
+                            // Actualizar los campos
+                            document.getElementById('totalUnitario').value = totalUnitario.toFixed(2);
+                            document.getElementById('igv').value = igv.toFixed(2);
+                            document.getElementById('montoTotal').value = montoTotal.toFixed(2);
+                        }
 
                         // Agregar manejadores de eventos a los checkboxes
                         var checkboxes = document.querySelectorAll('.checkboxExamen');
@@ -162,22 +187,22 @@
                                 actualizarTotales();
                             });
                         });
-                </script>
+                    </script>
 
-            </div>
-            <div class='box-data-cita-column2'>
-                <div class="file">
-                    <label class="Texto-input">Hora</label>
-                    <input type="time" class="input-form" id="hora" name="hora" asp-for="Hora"/>
                 </div>
-                <div class="file">
-                    <label class="Texto-input">Referencia:</label>
+                <div class='box-data-cita-column2'>
+                    <div class="file">
+                        <label class="Texto-input">Hora</label>
+                        <input type="time" class="input-form" id="hora" name="hora" asp-for="Hora" />
+                    </div>
+                    <div class="file">
+                        <label class="Texto-input">Referencia:</label>
                         <select class="input-form" id="sucursal" name="FK_Sucursal" asp-for="FK_Sucursal">
-                        <option value="1">Lima</option>
-                        <option value="2">Arequipa</option>
-                        <option value="3">Ica</option>
-                    </select>
-                </div>
+                            <option value="1">Lima</option>
+                            <option value="2">Arequipa</option>
+                            <option value="3">Ica</option>
+                        </select>
+                    </div>
                     <div class="file">
                         <label class="Texto-input">Urgencia</label>
                         <select class="input-form" id="urgencia" name="FK_Urgencia" asp-for="FK_Urgencia">
@@ -186,36 +211,37 @@
                             <option value="3">Prioridad</option>
                         </select>
                     </div>
-                <div class="file">
-                    <label class="Texto-input">Encargado actual:</label>
+                    <div class="file">
+                        <label class="Texto-input">Encargado actual:</label>
                         <select class="input-form" id="FK_Usuario" name="FK_Usuario" asp-for="FK_Usuario">
-                        <option value="1">Carlos Gonzales</option>
-                    </select>
-                </div>
-                <div class="file">
-                    <label class="Texto-input">Estado de Pago</label>
+                            <option value="1">Carlos Gonzales</option>
+                        </select>
+                    </div>
+                    <div class="file">
+                        <label class="Texto-input">Estado de Pago</label>
                         <select class="input-form" id="sucursal" name="FK_Estado_Pago" asp-for="FK_Estado_Pago">
-                        <option value="1">Falta Pagar</option>
-                        <option value="2">Medio Pago</option>
-                        <option value="3">Pagado</option>
-                    </select>
-                </div>
-                <div class="file">
-                    <label class="Texto-input">Observación</label>
-                        <textarea id="Observacion" name="Observacion" rows="4" cols="50" asp-for="Observacion">Ninguna</textarea>
-                </div>
-                <div class="file">
-                    <label class="Texto-input">IGV (18%)</label>
-                    <input type="text" class="input-form" id="igv" readonly />
-                </div>
-                <div class="file">
-                    <label class="Texto-input">Total a pagar</label>
-                    <input type="text" class="input-form" id="montoTotal" readonly />
+                            <option value="1">Falta Pagar</option>
+                            <option value="2">Medio Pago</option>
+                            <option value="3">Pagado</option>
+                        </select>
+                    </div>
+                    <div class="file">
+                        <label class="Texto-input">Observación</label>
+                        <textarea id="Observacion" name="Observacion" rows="4" cols="50"
+                            asp-for="Observacion">Ninguna</textarea>
+                    </div>
+                    <div class="file">
+                        <label class="Texto-input">IGV (18%)</label>
+                        <input type="text" class="input-form" id="igv" readonly />
+                    </div>
+                    <div class="file">
+                        <label class="Texto-input">Total a pagar</label>
+                        <input type="text" class="input-form" id="montoTotal" readonly />
+                    </div>
                 </div>
             </div>
+            <button type="submit" class="btn-formulario">Registrar Cita</button>
         </div>
-        <button type="submit" class="btn-formulario">Registrar Cita</button>
-    </div>
     </form>
     <script src="~/js/Main.js" asp-append-version="true"></script>
 </body>
