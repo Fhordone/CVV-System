@@ -103,3 +103,15 @@ h3{
     border: none;
     cursor: pointer;
 }
+.btn-validar {
+    margin-left: 10px; /* Ajusta según tu preferencia para agregar espacio entre input y botón */
+    border-radius: 5px;
+    background-color: #10495F;
+    width: 15%;
+    font-size: 16px;
+    padding: 5px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}

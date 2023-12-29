@@ -1,0 +1,94 @@
+@model List<Paciente>
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Pruebas</title>
+    <link rel="stylesheet" href="~/css/Listarpaciente.css" />
+    <link rel="stylesheet" href="~/css/General.css" />
+</head>
+
+<body>
+    <h1 class='tittle-text'>Pacientes Registrados</h1>
+    <!-- Contenedor para alinear el buscador y el botón a los extremos -->
+    <div class="header-container">
+        <!-- Buscador -->
+        <div class="search-container">
+            <form asp-action="ListarPacientes" asp-controller="Paciente" method="get">
+                <p>Buscar:</p>
+                <input type="text" id="searchInput" name="dni" placeholder="Ingrese el número de DNI">
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+
+
+        <!-- Botón "Crear Prueba" -->
+        <a asp-action="Crearpaciente" asp-controller="Paciente" asp-all-route-data="null" class="crear-prueba-btn">Crear
+            Paciente</a>
+    </div>
+    <div class="wrap-table100">
+        <div class="table100">
+            <table>
+                <thead>
+                    <tr class="table100-head">
+                        <th class="column1">ID</th>
+                        <th class="column2">Nombres</th>
+                        <th class="column3">Apellidos</th>
+                        <th class="column4">DNI</th>
+                        <th class="column4">Genero</th>
+                        <th class="column5">Email</th>
+                        <th class="column6">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="column1">@item.ID</td>
+                            <td class="column2">@item.Nombres</td>
+                            <td class="column3">@item.Apellidos</td>
+                            <td class="column4">@item.Nro_DNI</td>
+                            <td class="column4">@item.Genero</td>
+                            <td class="column5">@item.Email</td>
+                            <td class="column6">
+                                <div class="acciones-btns">
+                                    <a asp-action="Detallepaciente" asp-controller="Paciente" asp-route-ID="@item.ID"
+                                        class="visualizar-btn">Ver</a>
+                                    <a asp-action="Form_Paciente" asp-controller="Paciente" asp-route-ID="@item.ID"
+                                        class="editar-btn">Editar</a>
+                                    <button class="eliminar-btn">Eliminar</button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        function searchTable() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementsByTagName("table")[0];
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[3]; // Cambia a [4] si el DNI está en la quinta columna
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

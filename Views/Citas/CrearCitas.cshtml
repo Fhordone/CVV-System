@@ -13,7 +13,7 @@
 
 <body>
     <h1 class='tittle-text'>Crear Citas</h1>
-    <form asp-action="GuardarCita" asp-controller="Citas" method="post"></form>
+    <form asp-action="GuardarCita" asp-controller="Citas" method="post">
     <div class='box-crear-formulario'>
         <h3 class="Subtittle">Datos del Cliente</h3>
         <div class='box-data-user'>
@@ -26,40 +26,59 @@
                     </select>
                 </div>
                 <div class="file">
+                    <label class="Texto-input">Nombres</label>
+                    <div class="input-container">
+                        <select asp-for="FK_Paciente" class="input-form">
+                            <option value="">Seleccione un paciente</option>
+                            @foreach (var paciente in ViewBag.ListaPacientes)
+                            {
+                                <option value="@paciente.ID">@paciente.Nombres @paciente.Apellidos</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class='box-data-user-column2'>
+                <div class="file">
                     <label class="Texto-input">Nro. de documento</label>
                     <div class="input-container">
-                        <input id="dni" name="dni" type="number" class="input-form" />
+                        <input type="text" id="searchInput" placeholder="Buscar DNI" oninput="filterOptions()">
+                        <select asp-for="ID" class="input-form" id="selectDocumento">
+                            <option value="">Seleccione un número de Doc.</option>
+                            @foreach (var paciente in ViewBag.ListaPacientes)
+                            {
+                                <option value="@paciente.ID">@paciente.Nro_DNI</option>
+                            }
+                        </select>
                         <button id="boton" class="btn-validar">Validar</button>
                     </div>
                 </div>
-                <div class="file">
-                    <label class="Texto-input">Nombres</label>
-                    <input readonly="" id="nombre" type="text" class="input-form" />
-                </div>
+
+                <script>
+                    function filterOptions() {
+                        var input, filter, select, options, option, i, txtValue;
+                        input = document.getElementById("searchInput");
+                        filter = input.value.toUpperCase();
+                        select = document.getElementById("selectDocumento");
+                        options = select.getElementsByTagName("option");
+
+                        for (i = 0; i < options.length; i++) {
+                            option = options[i];
+                            txtValue = option.textContent || option.innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                option.style.display = "";
+                            } else {
+                                option.style.display = "none";
+                            }
+                        }
+                    }
+                </script>
                 <div class="file">
                     <label class="Texto-input">Apellidos</label>
                     <input readonly="" id="apellido" type="text" class="input-form" />
                 </div>
-            </div>
-            <div class='box-data-user-column2'>
-                <div class="file">
-                    <label class="Texto-input">Fecha de nacimiento</label>
-                    <input type="date" class="input-form" id="fecha" name="fecha" />
-                </div>
-                <div class="file">
-                    <label class="Texto-input">Email</label>
-                    <input type="text" class="input-form" />
-                </div>
-                <div class="file">
-                    <label class="Texto-input">Dirección</label>
-                    <input type="text" class="input-form" />
-                </div>
-                <div class="file">
-                    <label class="Texto-input">Encargado actual:</label>
-                    <select class="input-form" id="prueba" name="prueba">
-                        <option value="1">Carlos Gonzales</option>
-                    </select>
-                </div>
+
             </div>
         </div>
         <h3 class="Subtittle">Detalles de la cita</h3>
@@ -67,11 +86,11 @@
             <div class='box-data-cita-column1'>
                 <div class="file">
                     <label class="Texto-input">Fecha</label>
-                    <input type="date" class="input-form" id="fecha" name="fecha" />
+                    <input type="date" class="input-form" id="fecha" name="fecha" asp-for="Fecha"/>
                 </div>
                 <div class="file">
                     <label class="Texto-input">Estado</label>
-                    <select class="input-form" id="estado" name="estado">
+                        <select class="input-form" id="estado" name="FK_Estado" asp-for="FK_Estado">
                         <option value="1">En espera</option>
                         <option value="2">En proceso</option>
                         <option value="3">En revisión</option>
@@ -80,36 +99,102 @@
                         <option value="6">Suspendido</option>
                     </select>
                 </div>
+
+                    <div class="file">
+                        <label class="Texto-input">Exámenes Médicos</label>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre del Examen</th>
+                                    <th>Precio</th>
+                                    <th>Seleccionar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var examen in ViewBag.listaExamenes)
+                                {
+                                    <tr>
+                                        <td>@examen.ID</td>
+                                        <td>@examen.Nombre</td>
+                                        <td>@examen.Precio</td>
+                                        <td>
+                                            <input type="checkbox" class="checkboxExamen" data-precio="@examen.Precio" name="Examenes" value="@examen.ID" />
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
                 <div class="file">
-                    <label class="Texto-input">Prueba</label>
-                    <select class="input-form" id="prueba" name="prueba">
-                        <option value="hc">Hemograma completo</option>
-                        <option value="pl">Perfil Lipídico</option>
-                        <option value="g">Glucosa</option>
-                        <option value="pe">Prueba de embarazo</option>
-                    </select>
+                    <label class="Texto-input">Total Unitario</label>
+                    <input type="text" class="input-form" id="totalUnitario" readonly />
                 </div>
+
+                <script>
+                    // Función para calcular y actualizar el Total Unitario, IGV y Monto Total
+                    function actualizarTotales() {
+                        var totalUnitario = 0;
+                        // Obtener todos los checkboxes seleccionados
+                        var checkboxes = document.querySelectorAll('.checkboxExamen:checked');
+                        checkboxes.forEach(function (checkbox) {
+                            // Sumar el precio de los exámenes seleccionados
+                            totalUnitario += parseFloat(checkbox.getAttribute('data-precio'));
+                        });
+
+                        // Calcular IGV (18%)
+                        var igv = totalUnitario * 0.18;
+
+                        // Calcular Monto Total sumando el IGV al Total Unitario
+                        var montoTotal = totalUnitario + igv;
+
+                        // Actualizar los campos
+                        document.getElementById('totalUnitario').value = totalUnitario.toFixed(2);
+                        document.getElementById('igv').value = igv.toFixed(2);
+                        document.getElementById('montoTotal').value = montoTotal.toFixed(2);
+                    }
+
+                        // Agregar manejadores de eventos a los checkboxes
+                        var checkboxes = document.querySelectorAll('.checkboxExamen');
+                        checkboxes.forEach(function (checkbox) {
+                            checkbox.addEventListener('change', function () {
+                                actualizarTotales();
+                            });
+                        });
+                </script>
+
             </div>
             <div class='box-data-cita-column2'>
                 <div class="file">
                     <label class="Texto-input">Hora</label>
-                    <input type="time" class="input-form" id="hora" name="hora" />
+                    <input type="time" class="input-form" id="hora" name="hora" asp-for="Hora"/>
                 </div>
                 <div class="file">
-                    <label class="Texto-input">Sucursal</label>
-                    <select class="input-form" id="sucursal" name="sucursal">
-                        <option value="lima">Lima</option>
-                        <option value="arequipa">Arequipa</option>
-                        <option value="ica">Ica</option>
+                    <label class="Texto-input">Referencia:</label>
+                        <select class="input-form" id="sucursal" name="FK_Sucursal" asp-for="FK_Sucursal">
+                        <option value="1">Lima</option>
+                        <option value="2">Arequipa</option>
+                        <option value="3">Ica</option>
+                    </select>
+                </div>
+                    <div class="file">
+                        <label class="Texto-input">Urgencia</label>
+                        <select class="input-form" id="urgencia" name="FK_Urgencia" asp-for="FK_Urgencia">
+                            <option value="2">No</option>
+                            <option value="1">Si</option>
+                            <option value="3">Prioridad</option>
+                        </select>
+                    </div>
+                <div class="file">
+                    <label class="Texto-input">Encargado actual:</label>
+                        <select class="input-form" id="FK_Usuario" name="FK_Usuario" asp-for="FK_Usuario">
+                        <option value="1">Carlos Gonzales</option>
                     </select>
                 </div>
                 <div class="file">
-                    <label class="Texto-input">Total</label>
-                    <input type="text" class="input-form" />
-                </div>
-                <div class="file">
                     <label class="Texto-input">Estado de Pago</label>
-                    <select class="input-form" id="sucursal" name="sucursal">
+                        <select class="input-form" id="sucursal" name="FK_Estado_Pago" asp-for="FK_Estado_Pago">
                         <option value="1">Falta Pagar</option>
                         <option value="2">Medio Pago</option>
                         <option value="3">Pagado</option>
@@ -117,12 +202,21 @@
                 </div>
                 <div class="file">
                     <label class="Texto-input">Observación</label>
-                    <textarea id="miTextArea" name="miTextArea" rows="4" cols="50">Ninguna</textarea>
+                        <textarea id="Observacion" name="Observacion" rows="4" cols="50" asp-for="Observacion">Ninguna</textarea>
+                </div>
+                <div class="file">
+                    <label class="Texto-input">IGV (18%)</label>
+                    <input type="text" class="input-form" id="igv" readonly />
+                </div>
+                <div class="file">
+                    <label class="Texto-input">Total a pagar</label>
+                    <input type="text" class="input-form" id="montoTotal" readonly />
                 </div>
             </div>
         </div>
-        <button class="btn-formulario">Registrar Cita</button>
+        <button type="submit" class="btn-formulario">Registrar Cita</button>
     </div>
+    </form>
     <script src="~/js/Main.js" asp-append-version="true"></script>
 </body>
 

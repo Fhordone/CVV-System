@@ -16,9 +16,9 @@ namespace CCVLab
             _baseurl = builder.GetSection("ApiSettings:baseUrl").Value;
         }
 
-        public async Task<List<Cita>> Lista()
+        public async Task<List<ViewCita>> Lista()
         {
-            List<Cita> lista = new List<Cita>();
+            List<ViewCita> lista = new List<ViewCita>();
             /*Falta Autenticación*/
             var cliente = new HttpClient();
             cliente.BaseAddress = new Uri(_baseurl);
@@ -49,14 +49,14 @@ namespace CCVLab
             }
             return objeto;
         }
-        public async Task<bool> CreateCita(Cita objeto)
+        public async Task<bool> CreateCita(CreateCitaModel obj)
         {
             bool respuesta = false;
             /*Falta Autenticación*/
             var cliente = new HttpClient();
             cliente.BaseAddress = new Uri(_baseurl);
 
-            var content = new StringContent(JsonConvert.SerializeObject(objeto),Encoding.UTF8,"application/json");
+            var content = new StringContent(JsonConvert.SerializeObject(obj),Encoding.UTF8,"application/json");
 
             var response = await cliente.PostAsync("api/CreateCita",content);
 
@@ -66,14 +66,14 @@ namespace CCVLab
             }
             return respuesta;
         }
-        public async Task<bool> UpdateCita(Cita objeto)
+        public async Task<bool> UpdateCita(CreateCitaModel obj)
         {
             bool respuesta = false;
             /*Falta Autenticación*/
             var cliente = new HttpClient();
             cliente.BaseAddress = new Uri(_baseurl);
 
-            var content = new StringContent(JsonConvert.SerializeObject(objeto),Encoding.UTF8,"application/json");
+            var content = new StringContent(JsonConvert.SerializeObject(obj),Encoding.UTF8,"application/json");
 
             var response = await cliente.PostAsync("api/updatecita",content);
 
@@ -83,5 +83,6 @@ namespace CCVLab
             }
             return respuesta;
         }
+        
     }
 }

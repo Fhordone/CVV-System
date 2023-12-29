@@ -53,4 +53,10 @@ h1 {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+.crear-prueba-btn:hover {
+    color: #fff;
+    background-color: #2281a7;
 }

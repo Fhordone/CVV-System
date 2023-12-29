@@ -12,44 +12,42 @@
 </head>
 
 <body>
-    <h1 class='tittle-text'>Crear Paciente</h1>
+    <h1 class='tittle-text'>@ViewBag.Accion</h1>
 
     <div class='box-crear-formulario'>
         <h3 class="Subtittle">Datos del Paciente</h3>
-        <form asp-action="CreatePaciente" asp-controller="Paciente" method="post">
+        <form asp-action="GuardarPaciente" asp-controller="Paciente" method="post">
+            <input type="hidden" asp-for="ID" />
             <div class='box-data-user'>
+
                 <div class='box-data-user-column1'>
                     <div class="file">
                         <label class="Texto-input">Tipo de documento</label>
-                        <select class="input-form" id="Tipo_Documento" name="Tipo_Documento" asp-for="Tipo_Documento">
-                            <option value="DNI">DNI</option>
-                            <option value="Carné de Extranjería">Carné de Extranjería</option>
-                        </select>
+                        <input type="text" class="input-form"  asp-for="Tipo_Documento" disabled/>
                     </div>
                     <div class="file">
                         <label class="Texto-input">Nro. de documento</label>
                         <div class="input-container">
-                            <input type="number" class="input-form" asp-for="Nro_DNI" />
-                            <button id="boton" class="btn-validar">Validar</button>
+                            <input id="dni" name="dni" type="number" class="input-form" asp-for="Nro_DNI" disabled/>
                         </div>
                     </div>
                     <div class="file">
                         <label class="Texto-input">Nombres</label>
-                        <input class="input-form" asp-for="Nombres" />
+                        <input id="nombre" type="text" class="input-form" asp-for="Nombres" disabled/>
                     </div>
                     <div class="file">
                         <label class="Texto-input">Apellidos</label>
-                        <input type="text" class="input-form" asp-for="Apellidos" />
+                        <input  id="apellido" type="text" class="input-form" asp-for="Apellidos" disabled/>
                     </div>
                     <div class="file">
                         <label class="Texto-input">Direccion</label>
-                        <input type="text" class="input-form" asp-for="Direccion" />
+                        <input id="direccion" type="text" class="input-form" asp-for="Direccion" />
                     </div>
                 </div>
                 <div class='box-data-user-column2'>
                     <div class="file">
                         <label class="Texto-input">Fecha de nacimiento</label>
-                        <input type="date" class="input-form" asp-for="Fecha_Nacimiento" />
+                        <input type="date" class="input-form"  asp-for="Fecha_Nacimiento" />
                     </div>
                     <div class="file">
                         <label class="Texto-input">Género</label>
@@ -60,22 +58,25 @@
                     </div>
                     <div class="file">
                         <label class="Texto-input">Telefono</label>
-                        <input type="number" class="input-form" asp-for="Telefono" />
+                        <input type="text" class="input-form" asp-for="Telefono" />
                     </div>
                     <div class="file">
                         <label class="Texto-input">Correo Electronico</label>
-                        <input type="email" class="input-form" asp-for="Email" />
+                        <input type="text" class="input-form" asp-for="Email" />
                         </select>
                     </div>
                     <div class="file">
                         <label class="Texto-input">Contraseña</label>
-                        <input type="password" class="input-form" asp-for="Password" disabled />
+                        <input type="text" class="input-form" asp-for="Password" />
                     </div>
                 </div>
             </div>
             <button type="submit" class="btn-formulario">Registrar Paciente</button>
         </form>
+
     </div>
+
+    <script src="~/js/Main.js" asp-append-version="true"></script>
 </body>
 
 </html>

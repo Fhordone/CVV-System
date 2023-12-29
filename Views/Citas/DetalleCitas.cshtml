@@ -17,34 +17,24 @@
             <div class='box-data-user-column1'>
                 <div class="file">
                     <label class="Texto-input">Tipo de documento</label>
-                    <input id="dni" name="dni" type="text" class="input-form" disabled asp-for="FK_Tipo_Doc"/>
+                    <input id="dni" name="dni" type="text" class="input-form" asp-for="Tipo_Documento" disabled />
                 </div>
                 <div class="file">
                     <label class="Texto-input">Nro. de documento</label>
                     <input id="dni" name="dni" type="number" class="input-form" disabled asp-for="DNI_Paciente"/>
                 </div>
-                <div class="file">
-                    <label class="Texto-input">Nombres</label>
-                    <input readonly="" id="nombre" type="text" class="input-form" disabled asp-for="NombresPaciente"/>
-                </div>
-                <div class="file">
-                    <label class="Texto-input">Apellidos</label>
-                    <input readonly="" id="apellido" type="text" class="input-form" disabled asp-for="ApellidosPaciente"/>
-                </div>
+                
             </div>
             <div class='box-data-user-column2'>
                 <div class="file">
-                    <label class="Texto-input">Fecha de nacimiento</label>
-                    <input type="date" class="input-form" id="fecha" name="fecha" disabled asp-for="Fecha_Nacimiento"/>
+                    <label class="Texto-input">Nombres</label>
+                    <input readonly="" id="nombre" type="text" class="input-form" disabled asp-for="Nombres_Paciente"/>
                 </div>
                 <div class="file">
-                    <label class="Texto-input">Email</label>
-                    <input type="text" class="input-form" disabled asp-for="Email"/>
+                    <label class="Texto-input">Apellidos</label>
+                    <input readonly="" id="apellido" type="text" class="input-form" disabled asp-for="Apellidos_Paciente"/>
                 </div>
-                <div class="file">
-                    <label class="Texto-input">Dirección</label>
-                    <input type="text" class="input-form" disabled asp-for="Direccion"/>
-                </div>
+                
             </div>
         </div>
         <h3 class="Subtittle">Detalles de la cita</h3>

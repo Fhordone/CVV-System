@@ -1,4 +1,4 @@
-@model List<Cita>
+@model List<ViewCita>
 @{
     ViewData["Title"] = "Listar Citas";
 }
@@ -24,8 +24,8 @@
             <button onclick="searchTable()">Buscar</button>
         </div>
 
-        <!-- Botón "Crear Prueba" -->
-        <a asp-action="Cita" asp-controller="Citas" asp-route-ID="0" class="crear-prueba-btn">Crear Prueba</a>
+        <!-- Botón "Crear Cita" -->
+        <a asp-action="Cita" asp-controller="Citas" asp-route-ID="0" class="crear-prueba-btn">Crear Cita</a>
     </div>
     <div class="wrap-table100">
         <div class="table100">
@@ -34,10 +34,10 @@
                     <tr class="table100-head">
                         <th class="column1">ID</th>
                         <th class="column4">DNI</th>
-                        <th class="column4">Fecha</th>
+                        <th class="column5">Fecha</th>
                         <th class="column4">Urgencia</th>
-                        <th class="column4">Estado</th>
-                        <th class="column6">Acciones</th>
+                        <th class="column5">Estado</th>
+                        <th class="column5">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,10 +46,10 @@
                         <tr>
                             <td class="column1">@item.ID</td>
                             <td class="column4">@item.DNI_Paciente</td>
-                            <td class="column4">@item.Fecha</td>
+                            <td class="column5">@item.Fecha</td>
                             <td class="column4">@item.FK_Urgencia</td>
-                            <td class="column4">@item.FK_Estado</td>
-                            <td class="column6">
+                            <td class="column5">@item.FK_Estado</td>
+                            <td class="column5">
                                 <div class="acciones-btns">
                                     <a asp-action="DetalleCitas" asp-controller="Citas" asp-route-ID="@item.ID" class="visualizar-btn">Ver</a>
                                     <a asp-action="Cita" asp-controller="Citas" asp-route-ID="@item.ID" class="editar-btn">Editar</a>
